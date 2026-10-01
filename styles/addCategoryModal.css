@@ -1,0 +1,14 @@
+.modal-item input[type="color"] {
+  width: 44px;
+  height: 44px;
+  padding: 3px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.modal-item input[type="color"]:focus {
+  outline: 2px solid var(--blue-color);
+  outline-offset: 2px;
+}

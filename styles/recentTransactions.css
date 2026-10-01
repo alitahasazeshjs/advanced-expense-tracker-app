@@ -1,0 +1,36 @@
+.recent-trans-table-container {
+    background-color: var(--primary-color);
+    border-radius: 0.7rem;
+    max-width: 100%;
+    max-height: 35vh;
+    overflow: auto;
+}
+.recent-transactions-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    background-color: var(--primary-color);
+    border-radius: 0.7rem;
+    border: 1px solid var(--border-color);
+    color: var(--deep-color);
+}
+.recent-transactions-table tr:first-child {
+    background-color: var(--secondary-color);
+}
+.recent-transactions-table tr td:first-child,
+.recent-transactions-table tr th:first-child {
+    padding-left: 0.8rem;
+}
+.recent-transactions-table tr td,
+.recent-transactions-table th {
+    border-bottom: 1px solid var(--border-color);
+    padding-block: 0.8rem;
+}
+.recent-transactions-table tr:last-child td {
+    border-bottom: none;
+}
+.recent-transactions-table th {
+    text-align: start;
+}

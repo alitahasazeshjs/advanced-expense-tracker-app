@@ -1,0 +1,30 @@
+.budgets-page {
+  
+}
+.budgets-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block: 2rem;
+}
+.budgets-header .title {
+  margin: 0;
+}
+.budgets-page .budgets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.budget-summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.budget-summary-cards .card {
+  flex: 1;
+}
+.budgets-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.7rem;
+}

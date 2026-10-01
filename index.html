@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrackMoney</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="main-body">
+        <aside id="sidebar">  
+          <div class="sidebar-toggle">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div>
+              <h1 class="title"><i class="fa-solid fa-wallet"></i>MoneyTrack</h1>
+              <button class="nav-item" data-page="dashboard">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+              </button>
+              <button class="nav-item" data-page="transactions">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                Transactions
+              </button>
+              <button class="nav-item" data-page="categories">
+                <i class="fa-solid fa-chart-pie"></i>
+                Categories
+              </button>
+              <button class="nav-item" data-page="budgets">
+                <i class="fa-solid fa-tags"></i>
+                Budgets
+              </button>
+          </div>
+
+          <div class="settings">
+            <button class="settings-item">
+              <i class="fa-solid fa-gear"></i>
+              Settings
+            </button>
+          </div>
+        </aside>
+
+      <div id="app"></div>
+
+      <div id="modal-root" class="remove"></div>
+    </div>
+
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

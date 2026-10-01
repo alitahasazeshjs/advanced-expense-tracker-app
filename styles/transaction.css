@@ -1,0 +1,92 @@
+.transactions-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-block: 2rem;
+}
+.transactions-header .title {
+  margin: 0;
+}
+.transactions-input {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.transactions-input div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+.transactions-input .transacton-input-item label {
+  color: var(--deep-color);
+}
+.transactions-input .transacton-input-item input,
+.transactions-input .transacton-input-item select {
+  background-color: var(--primary-color);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  outline: none;
+  color: var(--deep-color);
+  min-width: 200px;
+}
+.transactions-container {
+  margin-top: 2rem;
+  max-height: 70vh;
+  max-width: 100%;
+  overflow: auto;
+}
+.transactions-container table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  width: 100%;
+  min-width: 800px;
+  border: 1px solid var(--border-color);
+  border-radius: 0.7rem;
+  background-color: var(--primary-color);
+  color: var(--deep-color);
+}
+.transactions-container table thead tr:first-child {
+  background-color: var(--secondary-color);
+}
+.transactions-container table td,
+.transactions-container table th {
+  border-bottom: 1px solid var(--border-color);
+  padding-block: 0.8rem;
+  text-align: start;
+}
+.transactions-container table tr:last-child td {
+  border-bottom: none;
+}
+.transactions-container table tr td:first-child,
+.transactions-container table tr th:first-child {
+  padding-left: 1rem;
+}
+.transactions-container .transaction-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+.no-trans-found {
+  padding: 1rem;
+}
+.no-trans-message {
+  color: var(--deep-color);
+  font-size: 1.2rem;
+}
+.no-trans-mes-cont {
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

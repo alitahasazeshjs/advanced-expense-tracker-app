@@ -1,0 +1,281 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "./sidebar.css";
+@import "./variables.css";
+@import "./modal.css";
+@import "./settings-modal.css";
+@import "./card.css";
+@import "./budget.css";
+@import "./dashboard.css";
+@import "./recentTransactions.css";
+@import "./transaction.css";
+@import "./categories.css";
+@import "./addCategoryModal.css";
+@import "./budgets.css";
+/* Parents General Styles */
+.main-body {
+  overflow-x: none;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+body {
+  background-color: var(--body-color);
+  overflow-x: hidden;
+}
+.main-body {
+  display: flex;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+}
+button {
+  border: none;
+  outline: none;
+}
+#app {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem;
+  position: relative;
+  margin: 0.5rem;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-deep-color);
+  border-radius: 0.7rem;
+  /* box-shadow: -6px  4px 15px -11px rgba(0,0,0,0.44); */
+}
+.remove {
+  display: none;
+}
+/* Table Button */
+.table-delete-btn,
+.table-edit-btn {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.table-delete-btn {
+  background-color: red;
+}
+.table-edit-btn {
+  background-color: var(--blue-color);
+}
+
+/* Modal Root */
+#modal-root {
+  z-index: 100000;
+}
+
+/* Select */
+select {
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+.select-wrapper {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.select-wrapper select {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--secondary-color);
+  color: var(--deep-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  outline: none;
+}
+.select-wrapper select {
+  width: 100%;
+}
+.select-wrapper i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 0.5rem;
+  height: 100%;
+  background-color: var(--secondary-color);
+  border-radius: 0 1rem 1rem 0;
+  border-right: 1px solid var(--border-color);
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: none;
+  color: var(--deep-color);
+}
+
+/* Modal */
+
+.modal-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.modal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-item label {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.modal-item input {
+  background-color: var(--secondary-color);
+  border: none;
+  outline: none;
+  border: 1px solid var(--border-color);
+  padding-inline: 0.6rem;
+  padding-block: 0.5rem;
+  border-radius: 1rem;
+  color: var(--deep-color);
+}
+
+.modal-footer-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.7rem;
+}
+
+.modal-footer-buttons button {
+  margin-top: 1rem;
+  padding-inline: 1rem;
+  padding-block: 0.6rem;
+  border-radius: 5rem;
+  cursor: pointer;
+  color: white;
+}
+
+.delete-modal-delete-btn,
+.modal-cancel-btn {
+  background-color: rgb(255, 49, 49);
+}
+.delete-modal-delete-btn:hover,
+.modal-cancel-btn:hover {
+  background-color: rgb(247, 4, 4);
+}
+.modal-pos-btn {
+  background-color: var(--blue-color);
+}
+.modal-pos-btn:hover {
+  background-color: var(--dark-blue-color);
+}
+.delete-modal-cancel-btn {
+  background-color: var(--secondary-color);
+}
+.delete-modal-cancel-btn:hover {
+  background-color: var(--secondary-deep-color);
+}
+.delete-modal-title {
+  font-size: 1.4rem;
+  text-align: center;
+  color: var(--deep-color);
+  margin-block: 2rem;
+}
+.first-title {
+  margin-top: 0;
+}
+
+.see-more {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.see-more:hover {
+  color: var(--deep-color);
+  cursor: pointer;
+}
+
+.see-more i {
+  font-size: 0.6rem;
+}
+
+.trans-cat,
+.trans-desc {
+    text-transform: capitalize;
+}
+
+
+@media (max-width: 1350px) {
+  #app {
+    height: fit-content;
+    min-height: calc(100vh - 1rem);
+  }
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: -310px;
+    z-index: 100;
+    height: calc(100vh - 1rem);
+    transition: 0.2s linear;
+  }
+  #sidebar.active {
+    left: 0;
+  }
+  .sidebar-toggle {
+    position: absolute;
+    top: 10px;
+    color: var(--deep-color);
+    right: -40px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-deep-color);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0.3rem 0.3rem 0;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 450px) {
+  #sidebar {
+    width: 100%;
+    margin: 0;
+    left: -100%;
+    height: 100vh;
+  }
+  #sidebar.active .sidebar-toggle {
+    right: 10px;
+    z-index: 1000;
+    background-color: transparent;
+    border-radius: 0.3rem;
+  }
+}
+
+/* Page Add Buttons */
+.page-add-btn {
+  background-color: var(--blue-color);
+  color: white;
+  padding-block: 0.6rem;
+  padding-inline: 1rem;
+  border-radius: 5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.page-add-btn:hover {
+  background-color: var(--dark-blue-color);
+}
+.page-add-btn i {
+  font-size: 0.8rem;
+}

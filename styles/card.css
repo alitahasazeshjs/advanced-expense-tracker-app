@@ -1,0 +1,29 @@
+.card {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    flex: 1;
+    border: 1px solid var(--border-color);
+    border-radius: 0.4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.card .card-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: var(--text-color)
+}
+.card .card-icon i {
+    font-size: 2.5rem;
+}
+.card-content .amount{
+    color: var(--deep-color);
+    font-size: 1.5rem;
+}
+.card-content .green {
+    color: green;
+}
+.card-content .red {
+    color: red;
+}

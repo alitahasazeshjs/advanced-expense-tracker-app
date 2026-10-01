@@ -1,0 +1,62 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 1rem;
+}
+.budgets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.title {
+  margin-top: 2rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--deep-color);
+}
+.title i {
+  font-size: 1.2rem;
+}
+
+.all-trans-cont {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.income-type {
+  background-color: #85e45d62;
+  border: 1px solid rgba(172, 255, 47, 0.61);
+}
+
+.expense-type {
+  background-color: #ef444462;
+  border: 1px solid rgba(239, 68, 68, 0.61);
+}
+
+.trans-type {
+  padding-block: 0.3rem;
+  padding-inline: 0.5rem;
+  border-radius: 3rem;
+  font-size: 0.9rem;
+}
+
+.no-recent-trans-cont {
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-recent-trans-message {
+    color: var(--text-color);
+  font-size: 1rem;
+}

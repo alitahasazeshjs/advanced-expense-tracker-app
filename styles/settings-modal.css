@@ -1,0 +1,71 @@
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+.settings-content .settings-label {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+.settings-content select {
+  width: 100px;
+  padding-inline: 0.4rem;
+  padding-block: 0.2rem;
+}
+.settings-content .settings-modal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.theme-select {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: var(--secondary-color);
+  border-radius: 1rem;
+  padding: 0.3rem;
+}
+.theme-select button {
+  flex: 1;
+  padding-block: 0.4rem;
+  background: transparent;
+  border-radius: 1rem;
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-color);
+}
+.theme-select button.active {
+  background-color: var(--blue-color);
+  color: white;
+}
+.settings-content select {
+  width: 100%;
+}
+.data-buttons {
+  display: flex;
+  gap: 0.4rem;
+}
+.data-buttons button {
+  gap: 0.1rem;
+  flex: 1;
+  padding-block: 0.8rem;
+  padding-inline: 0.2rem;
+  border-radius: 3rem;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  color: var(--deep-color);
+}
+.data-buttons button.clear-all {
+  color: red;
+}
+.data-buttons button:hover {
+  background-color: var(--hover-color-secondary);
+}
+.data-options {
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.4rem;
+}

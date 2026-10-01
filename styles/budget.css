@@ -1,0 +1,99 @@
+.budget-card {
+    background-color: var(--secondary-color);
+    flex: 1;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+.budget-card.budget-list {
+    padding-right: 2rem;
+}
+.budget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.budget-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--deep-color);
+}
+.budget-header span {
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+.budget-progress-bar {
+    width: 100%;
+    background-color: var(--third-color);
+    height: 5px;
+    border-radius: 0.2rem;
+    margin-block: 0.8rem;
+    position: relative;
+}
+.budget-progress-bar span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 0.2rem;
+}
+.budget-footer {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+.budget-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.budget-actions-dropdown {
+    /* display: none; */
+    position: absolute;
+    background-color: var(--secondary-color);
+    padding-block: 0.5rem;
+    padding-inline: 0.3rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.3rem;
+    right: 19px;
+    top: 0;
+    z-index: 50;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    box-shadow: -1px 3px 21px 5px rgba(0,0,0,0.08);
+}
+.budget-actions-btn {
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--deep-color);
+}
+.budget-actions-dropdown button {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 0.3rem;
+    padding-inline: 0.7rem;
+    padding-block: 0.4rem;
+    border-radius: 5rem;
+    cursor: pointer;
+}
+.budget-actions-dropdown.open {
+    display: flex;
+}
+.budget-actions-dropdown button:first-child {
+    background-color: red;
+}
+.budget-actions-dropdown button:last-child {
+    background-color: var(--blue-color);
+}
+.budgets-main {
+    height: fit-content;
+    max-height: 68vh;
+    overflow: auto;
+}

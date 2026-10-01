@@ -1,0 +1,108 @@
+.categories-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-block: 2rem;
+}
+.categories-header .title {
+    margin: 0;
+}
+
+.categories-input {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  column-gap: 5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.categories-input .categories-input-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.categories-input .categories-input-item label {
+    color: var(--deep-color);
+}
+.categories-input .categories-input-item input {
+  background-color: var(--primary-color);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  outline: none;
+  color: var(--deep-color);
+}
+.categories-filter-container {
+    display: flex;
+    gap: 0.4rem;
+}
+.categories-filter-container button {
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    padding-block: 0.4rem;
+    padding-inline: 1rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    color: var(--deep-color);
+}
+.categories-filter-container button:hover {
+    background-color: var(--border-color);
+}
+.categories-filter-container button.active {
+    background-color: var(--blue-color);
+    color: white;
+}
+.categories-filter-container button.active:hover {
+    background-color: var(--dark-blue-color)
+}
+.categories-table-container {
+    margin-top: 2rem;
+    max-height: 71vh;
+    /* max-width: 100%; */
+    overflow: auto;
+}
+.categories-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    background-color: var(--primary-color);
+    border-radius: 0.7rem;
+    border: 1px solid var(--border-color);
+    overflow-y: scroll;
+    color: var(--deep-color);
+}
+.categories-table thead tr {
+    background-color: var(--secondary-color);
+}
+.categories-table tr td:first-child,
+.categories-table tr th:first-child {
+    padding-left: 1rem;
+}
+.categories-table tr td,
+.categories-table th {
+    border-bottom: 1px solid var(--border-color);
+    padding-block: 0.8rem;
+}
+.categories-table tr:last-child td {
+    border-bottom: none;
+}
+.categories-table th {
+    text-align: start;
+}
+.categories-table .category-actions {
+    display: flex;
+    gap: 0.3rem;
+}
+.categories-table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
