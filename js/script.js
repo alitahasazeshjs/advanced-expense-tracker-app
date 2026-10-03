@@ -18,6 +18,7 @@ import {
   editCategory,
 } from "./services/categoryServices.js";
 import { renderCategoriesRow } from "./services/categoriesServices.js";
+import { addBudget } from "./pages/budgetServices.js";
 
 // Elements
 const app = document.getElementById("app");
@@ -39,56 +40,67 @@ const defaultCategories = [
     id: "cat-exp-food",
     name: "Food",
     type: "expense",
+    color: "#F97316",
   },
   {
     id: "cat-exp-transport",
     name: "Transport",
     type: "expense",
+    color: "#3B82F6",
   },
   {
     id: "cat-exp-housing",
     name: "Housing",
     type: "expense",
+    color: "#8B5CF6",
   },
   {
     id: "cat-exp-utilities",
     name: "Utilities",
     type: "expense",
+    color: "#06B6D4",
   },
   {
     id: "cat-exp-shopping",
     name: "Shopping",
     type: "expense",
+    color: "#EC4899",
   },
   {
     id: "cat-exp-entertainment",
     name: "Entertainment",
     type: "expense",
+    color: "#A855F7",
   },
   {
     id: "cat-exp-health",
     name: "Health",
     type: "expense",
+    color: "#EF4444",
   },
   {
     id: "cat-exp-education",
     name: "Education",
     type: "expense",
+    color: "#14B8A6",
   },
   {
     id: "cat-exp-travel",
     name: "Travel",
     type: "expense",
+    color: "#0EA5E9",
   },
   {
     id: "cat-exp-personal-care",
     name: "Personal Care",
     type: "expense",
+    color: "#F43F5E",
   },
   {
     id: "cat-exp-other",
     name: "Other",
     type: "expense",
+    color: "#64748B",
   },
 
   // Income categories
@@ -96,26 +108,31 @@ const defaultCategories = [
     id: "cat-inc-salary",
     name: "Salary",
     type: "income",
+    color: "#22C55E",
   },
   {
     id: "cat-inc-freelance",
     name: "Freelance",
     type: "income",
+    color: "#84CC16",
   },
   {
     id: "cat-inc-investment",
     name: "Investment",
     type: "income",
+    color: "#10B981",
   },
   {
     id: "cat-inc-gift",
     name: "Gift",
     type: "income",
+    color: "#EAB308",
   },
   {
     id: "cat-inc-other",
     name: "Other Income",
     type: "income",
+    color: "#6366F1",
   },
 ];
 
@@ -323,9 +340,7 @@ function handleAddCatButton() {
       addCategoryModaConf.content
     );
     const modalAddCategoryBtn = document.querySelector(".modal-pos-btn");
-    console.log(modalAddCategoryBtn);
     modalAddCategoryBtn.addEventListener("click", () => {
-      console.log("CLiccckedd");
       addCategory();
       modalRoot.classList.add("remove");
       navigateTo("categories");
@@ -354,31 +369,35 @@ function handleBudgetActionsDropDown() {
 
 // Handle Add Budget Modal
 
-const addBudgetModalConf = {
-  content: `
-    <div class="modal-inner add-budget-modal">
-      <div class="modal-item add-budget-item">
-        <label for="budget-category">Category</label>
-        <div class="select-wrapper">
-          <select id="budget-type">
-            <option value="expense">Expense</option>
-            <option value="income">Income</option>
-          </select>
-          <i class="fa-solid fa-chevron-down"></i>
+function handleAddBugetButton() {
+  const addBudgetModalConf = {
+    content: `
+      <div class="modal-inner add-budget-modal">
+        <div class="modal-item add-budget-item">
+          <label for="budget-category">Category</label>
+          <div class="select-wrapper">
+            <select id="budget-category">
+                ${getCategories().map((category) => {
+                console.log(category.name);
+                return `<option value="${category.name.toLowerCase()}" data-type="${
+                  category.type
+                }" data-id="${category.id}">${category.name}</option>`;
+              })}
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="modal-item add-budget-item">
+          <label for="budget-type">Budget Amount</label>
+          <input type="number" id="budget-amount" placeholder="100, 200..."/>
         </div>
       </div>
-      <div class="modal-item add-budget-item">
-        <label for="budget-type">Budget Amount</label>
-        <input type="text" id="budget-name" placeholder="100, 200..."/>
+      <div class="modal-footer-buttons">
+        <button class="modal-cancel-btn">Cancel</button>
+        <button class="modal-pos-btn">Add Budget</button>
       </div>
-    </div>
-    <div class="modal-footer-buttons">
-      <button class="modal-cancel-btn">Cancel</button>
-      <button class="modal-pos-btn">Add Budget</button>
-    </div>
-  `,
-};
-function handleAddBugetButton() {
+    `,
+  };
   const addBudgetBtn = document.querySelector(".add-budget-btn");
   addBudgetBtn.addEventListener("click", () => {
     modalRoot.classList.remove("remove");
@@ -386,6 +405,12 @@ function handleAddBugetButton() {
       "<i class='fa-solid fa-chart-pie' style='color: var(--blue-color)'></i>Add Budget",
       addBudgetModalConf.content
     );
+
+    const modalAddBudgetButton = document.querySelector('.modal-pos-btn');
+    modalAddBudgetButton.addEventListener('click', () => {
+      addBudget();
+      navigateTo("budgets");
+    })
   });
 }
 
@@ -790,3 +815,10 @@ function handleCategoriesFilter() {
   };
   searchCategory.addEventListener("input", applyCategoriesFilters);
 }
+
+
+
+
+// Reviewed the git hub lessons, and pushed this project to my github
+// Have to implement the budgets functionallity and also learn as much about gihub
+// Good Luck :) 10/1/2026  7:22 P.M Thursday Night

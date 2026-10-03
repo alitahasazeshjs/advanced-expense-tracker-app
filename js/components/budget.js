@@ -1,4 +1,15 @@
-export const Budget = (category, spent, budget, transactions, color, actions) => {
+import { getCategory } from "../data/categoriesData.js"
+import { getTransactions } from "../data/transactionData.js";
+
+export const Budget = (category, amount, categoryId, actions) => {
+    const categoryItem = getCategory(categoryId)[0];
+    console.log("Category Id:", categoryId)
+    const color = categoryItem.color;
+    const transactions = getTransactions().filter(trans => trans.id === category);
+    let spent = 0;
+    transactions.map(trans => {
+        spent += Number(trans.amount);
+    })
     return `
         <div class="budget-card ${actions ? 'budget-list' : ''}">
             ${actions ? ` <div class="budget-actions">
@@ -11,13 +22,13 @@ export const Budget = (category, spent, budget, transactions, color, actions) =>
            
             <div class="budget-header">
                 <h3><div class="budget-color" style="background-color: ${color}; width: 10px; height: 10px; border-radius: 50%;"></div>${category}</h3>
-                <span>$${spent}/$${budget}</span>
+                <span>$${spent}/$${amount}</span>
             </div>
             <div class="budget-progress-bar">
-                <span style="width: ${(spent * 100) / budget}%; background-color: ${color}"></span>
+                <span style="width: ${(spent * 100) / amount}%; background-color: ${color}"></span>
             </div>
             <div class="budget-footer">
-                <span>$${budget - spent} left</span>
+                <span>$${amount - spent} left</span>
                 <span>${transactions} Transactions</span>
             </div>
         </div>

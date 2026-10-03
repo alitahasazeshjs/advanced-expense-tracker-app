@@ -1,5 +1,6 @@
 import { Budget } from "../components/budget.js";
 import { Card } from "../components/card.js";
+import { getBudgets } from "../data/budgetsData.js";
 
 const cards = [
     {
@@ -19,155 +20,157 @@ const cards = [
     },
 ]
 
-const budgets = [
-  {
-    color: "#4CAF50",
-    category: "Food",
-    budget: 500,
-    spent: 325,
-    transactions: 18
-  },
-  {
-    color: "#2196F3",
-    category: "Transport",
-    budget: 300,
-    spent: 185,
-    transactions: 12
-  },
-  {
-    color: "#FF9800",
-    category: "Entertainment",
-    budget: 200,
-    spent: 140,
-    transactions: 8
-  },
-  {
-    color: "#9C27B0",
-    category: "Shopping",
-    budget: 400,
-    spent: 275,
-    transactions: 11
-  },
-  {
-    color: "#F44336",
-    category: "Utilities",
-    budget: 350,
-    spent: 310,
-    transactions: 7
-  },
-  {
-    color: "#00ACC1",
-    category: "Health",
-    budget: 250,
-    spent: 120,
-    transactions: 5
-  },
-  {
-    color: "#795548",
-    category: "Education",
-    budget: 300,
-    spent: 95,
-    transactions: 4
-  },
-   {
-    color: "#4CAF50",
-    category: "Food",
-    budget: 500,
-    spent: 325,
-    transactions: 18
-  },
-  {
-    color: "#2196F3",
-    category: "Transport",
-    budget: 300,
-    spent: 185,
-    transactions: 12
-  },
-  {
-    color: "#FF9800",
-    category: "Entertainment",
-    budget: 200,
-    spent: 140,
-    transactions: 8
-  },
-  {
-    color: "#9C27B0",
-    category: "Shopping",
-    budget: 400,
-    spent: 275,
-    transactions: 11
-  },
-  {
-    color: "#F44336",
-    category: "Utilities",
-    budget: 350,
-    spent: 310,
-    transactions: 7
-  },
-  {
-    color: "#00ACC1",
-    category: "Health",
-    budget: 250,
-    spent: 120,
-    transactions: 5
-  },
-  {
-    color: "#795548",
-    category: "Education",
-    budget: 300,
-    spent: 95,
-    transactions: 4
-  },
-   {
-    color: "#4CAF50",
-    category: "Food",
-    budget: 500,
-    spent: 325,
-    transactions: 18
-  },
-  {
-    color: "#2196F3",
-    category: "Transport",
-    budget: 300,
-    spent: 185,
-    transactions: 12
-  },
-  {
-    color: "#FF9800",
-    category: "Entertainment",
-    budget: 200,
-    spent: 140,
-    transactions: 8
-  },
-  {
-    color: "#9C27B0",
-    category: "Shopping",
-    budget: 400,
-    spent: 275,
-    transactions: 11
-  },
-  {
-    color: "#F44336",
-    category: "Utilities",
-    budget: 350,
-    spent: 310,
-    transactions: 7
-  },
-  {
-    color: "#00ACC1",
-    category: "Health",
-    budget: 250,
-    spent: 120,
-    transactions: 5
-  },
-  {
-    color: "#795548",
-    category: "Education",
-    budget: 300,
-    spent: 95,
-    transactions: 4
-  }
-];
+// const budgets = [
+//   {
+//     color: "#4CAF50",
+//     category: "Food",
+//     budget: 500,
+//     spent: 325,
+//     transactions: 18
+//   },
+//   {
+//     color: "#2196F3",
+//     category: "Transport",
+//     budget: 300,
+//     spent: 185,
+//     transactions: 12
+//   },
+//   {
+//     color: "#FF9800",
+//     category: "Entertainment",
+//     budget: 200,
+//     spent: 140,
+//     transactions: 8
+//   },
+//   {
+//     color: "#9C27B0",
+//     category: "Shopping",
+//     budget: 400,
+//     spent: 275,
+//     transactions: 11
+//   },
+//   {
+//     color: "#F44336",
+//     category: "Utilities",
+//     budget: 350,
+//     spent: 310,
+//     transactions: 7
+//   },
+//   {
+//     color: "#00ACC1",
+//     category: "Health",
+//     budget: 250,
+//     spent: 120,
+//     transactions: 5
+//   },
+//   {
+//     color: "#795548",
+//     category: "Education",
+//     budget: 300,
+//     spent: 95,
+//     transactions: 4
+//   },
+//    {
+//     color: "#4CAF50",
+//     category: "Food",
+//     budget: 500,
+//     spent: 325,
+//     transactions: 18
+//   },
+//   {
+//     color: "#2196F3",
+//     category: "Transport",
+//     budget: 300,
+//     spent: 185,
+//     transactions: 12
+//   },
+//   {
+//     color: "#FF9800",
+//     category: "Entertainment",
+//     budget: 200,
+//     spent: 140,
+//     transactions: 8
+//   },
+//   {
+//     color: "#9C27B0",
+//     category: "Shopping",
+//     budget: 400,
+//     spent: 275,
+//     transactions: 11
+//   },
+//   {
+//     color: "#F44336",
+//     category: "Utilities",
+//     budget: 350,
+//     spent: 310,
+//     transactions: 7
+//   },
+//   {
+//     color: "#00ACC1",
+//     category: "Health",
+//     budget: 250,
+//     spent: 120,
+//     transactions: 5
+//   },
+//   {
+//     color: "#795548",
+//     category: "Education",
+//     budget: 300,
+//     spent: 95,
+//     transactions: 4
+//   },
+//    {
+//     color: "#4CAF50",
+//     category: "Food",
+//     budget: 500,
+//     spent: 325,
+//     transactions: 18
+//   },
+//   {
+//     color: "#2196F3",
+//     category: "Transport",
+//     budget: 300,
+//     spent: 185,
+//     transactions: 12
+//   },
+//   {
+//     color: "#FF9800",
+//     category: "Entertainment",
+//     budget: 200,
+//     spent: 140,
+//     transactions: 8
+//   },
+//   {
+//     color: "#9C27B0",
+//     category: "Shopping",
+//     budget: 400,
+//     spent: 275,
+//     transactions: 11
+//   },
+//   {
+//     color: "#F44336",
+//     category: "Utilities",
+//     budget: 350,
+//     spent: 310,
+//     transactions: 7
+//   },
+//   {
+//     color: "#00ACC1",
+//     category: "Health",
+//     budget: 250,
+//     spent: 120,
+//     transactions: 5
+//   },
+//   {
+//     color: "#795548",
+//     category: "Education",
+//     budget: 300,
+//     spent: 95,
+//     transactions: 4
+//   }
+// ];
+
+const budgets = getBudgets();
 
 export const renderBudgets = () => {
     return `
@@ -183,9 +186,9 @@ export const renderBudgets = () => {
             </div>
                 <h1 class="title">Budgets</h1>
             <div class="budgets-main">
-                ${budgets.map(budget => {
-                               return Budget(budget.category, budget.spent, budget.budget, budget.transactions, budget.color, true);
-                           }).join("")}    
+                ${budgets.length > 0 ? `${budgets.map(budget => {
+                               return Budget(budget.category, budget.amount, budget.categoryId, true);
+                           }).join("")} }`: `<h1>No Budgets Yet!</h1>`   }
             </div>
     `  
 }

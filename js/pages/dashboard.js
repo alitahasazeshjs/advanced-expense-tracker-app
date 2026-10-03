@@ -7,58 +7,61 @@ import {
   getBalance,
 } from "../data/dashboardData.js";
 import { getTransactions } from "../data/transactionData.js";
+import { getBudgets } from "../data/budgetsData.js";
 
-const budgets = [
-  {
-    color: "#4CAF50",
-    category: "Food",
-    budget: 500,
-    spent: 325,
-    transactions: 18,
-  },
-  {
-    color: "#2196F3",
-    category: "Transport",
-    budget: 300,
-    spent: 185,
-    transactions: 12,
-  },
-  {
-    color: "#FF9800",
-    category: "Entertainment",
-    budget: 200,
-    spent: 140,
-    transactions: 8,
-  },
-  {
-    color: "#9C27B0",
-    category: "Shopping",
-    budget: 400,
-    spent: 275,
-    transactions: 11,
-  },
-  {
-    color: "#F44336",
-    category: "Utilities",
-    budget: 350,
-    spent: 310,
-    transactions: 7,
-  },
-  {
-    color: "#00ACC1",
-    category: "Health",
-    budget: 250,
-    spent: 120,
-    transactions: 5,
-  },
-  {
-    color: "#795548",
-    category: "Education",
-    budget: 300,
-    spent: 95,
-    transactions: 4,
-  },
-];
+// const budgets = [
+//   {
+//     color: "#4CAF50",
+//     category: "Food",
+//     budget: 500,
+//     spent: 325,
+//     transactions: 18,
+//   },
+//   {
+//     color: "#2196F3",
+//     category: "Transport",
+//     budget: 300,
+//     spent: 185,
+//     transactions: 12,
+//   },
+//   {
+//     color: "#FF9800",
+//     category: "Entertainment",
+//     budget: 200,
+//     spent: 140,
+//     transactions: 8,
+//   },
+//   {
+//     color: "#9C27B0",
+//     category: "Shopping",
+//     budget: 400,
+//     spent: 275,
+//     transactions: 11,
+//   },
+//   {
+//     color: "#F44336",
+//     category: "Utilities",
+//     budget: 350,
+//     spent: 310,
+//     transactions: 7,
+//   },
+//   {
+//     color: "#00ACC1",
+//     category: "Health",
+//     budget: 250,
+//     spent: 120,
+//     transactions: 5,
+//   },
+//   {
+//     color: "#795548",
+//     category: "Education",
+//     budget: 300,
+//     spent: 95,
+//     transactions: 4,
+//   },
+// ];
+
+const budgets = getBudgets()
 
 export const renderDashbaord = () => {
   const cards = [
@@ -96,17 +99,15 @@ export const renderDashbaord = () => {
         </div>
         <h1 class="title"><i class="fa-solid fa-chart-pie" style="color: #8B5CF6"></i> Budgets</h1>
         <div class="budgets">
-            ${budgets
+            ${budgets.length > 0 ? budgets
               .map((budget) => {
                 return Budget(
                   budget.category,
-                  budget.spent,
-                  budget.budget,
-                  budget.transactions,
-                  budget.color
+                  budget.amount,
+                  budget.categoryId
                 );
               })
-              .join("")}    
+              .join("") : `<h1>No Budgets Yet</h1>`}    
         </div>
         <h1 class="title"><i class="fa-solid fa-arrow-right-arrow-left" style="color: #F59E0B"></i> Recent Transactions</h1>
         ${recentTrans.length === 0 ? `<div class="no-recent-trans-cont"><p class="no-recent-trans-message" >No Recent Transactions Yet</p></div>` : ` 
