@@ -11,6 +11,7 @@
 - ## Todos:
 - FIX: 
     - JS: after adding budget it doesn't get displayed live in budgets list
+    - JS: when we don't enter some input in add modal, the alert shows up, after clicking the "ok" button in alerts, the modal also disappears
     - CSS: the settings button in navbar on mobile screen gets displayed outside of the screen and should be scrolled to be seen
 - IMPLEMENT:
     - navbar toggle and button and most buttons sometimes doens't work on first click

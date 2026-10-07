@@ -160,62 +160,63 @@ export const renderTransactions = () => {
             <h1 class="title"><i class="fa-solid fa-arrow-right-arrow-left" style="color: var(--blue-color)"></i>Transactions</h1>
              <button class="page-add-btn add-transaction-btn"><i class="fa-solid fa-plus"></i> Add Transaction</button>
         </div>
-        <div class="transactions-input">
-            <div class="transacton-input-item">
-                <label for="search-trans">Search</label>
-                <input type="text" id="search-trans" placeholder="Search Transactions" />
-            </div>
-            <div class="transacton-input-item">
-                <label for="category-filter">Category</label>
-                <div class="select-wrapper">
-                    <select id="category-filter">
-                        <option value="all" selected>All</option>
-                         ${getCategories().map((category) => {
-                                      console.log(category.name);
-                                      return `<option value="${category.name.toLowerCase()}" data-type="${
-                                        category.type
-                                      }">${category.name}</option>`;
-                                    })}
-                    </select>
-                     <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                
-            </div>
-            <div class="transacton-input-item">
-                <label for="type-filter">Type</label>
-                <div class="select-wrapper">
-                    <select id="type-filter">
-                        <option value="all" selected >All</option>
-                        <option value="expense">Expense</option>
-                        <option value="income">Income</option>
-                    </select>
-                     <i class="fa-solid fa-chevron-down"></i>
-
-                </div>
-               
-            </div>
-           
-            <div class="transacton-input-item">
-                <label for="order-filter">Order</label>
-                <div class="select-wrapper">
-                    <select id="order-filter">
-                        <option value="date-desc">Date: Newest → Oldest</option>
-                        <option value="date-asc">Date: Oldest → Newest</option>
-                        <option value="amount-desc">Amount: Highest → Lowest</option>
-                        <option value="amount-asc">Amount: Lowest → Highest</option>
-                        <option value="category-asc">Category: A → Z</option>
-                        <option value="category-desc">Category: Z → A</option>
-                    </select>
-                     <i class="fa-solid fa-chevron-down"></i>
-                </div>
-               
-            </div>
-        </div>
+        
         <div class="transactions-container">
             ${
               getTransactions().length === 0
-                ? "<div class='no-trans-mes-cont'><p class='no-trans-message'>Add Transactions to See Your Transactions!</p></div>"
+                ? `<div class='empty-state-container'><h1>No Transactions!</h1><p>Add transactions to see them here</p></div>`
                 : ` 
+                <div class="transactions-input">
+                    <div class="transacton-input-item">
+                        <label for="search-trans">Search</label>
+                        <input type="text" id="search-trans" placeholder="Search Transactions" />
+                    </div>
+                    <div class="transacton-input-item">
+                        <label for="category-filter">Category</label>
+                        <div class="select-wrapper">
+                            <select id="category-filter">
+                                <option value="all" selected>All</option>
+                                ${getCategories().map((category) => {
+                                              console.log(category.name);
+                                              return `<option value="${category.name.toLowerCase()}" data-type="${
+                                                category.type
+                                              }">${category.name}</option>`;
+                                            })}
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        
+                    </div>
+                    <div class="transacton-input-item">
+                        <label for="type-filter">Type</label>
+                        <div class="select-wrapper">
+                            <select id="type-filter">
+                                <option value="all" selected >All</option>
+                                <option value="expense">Expense</option>
+                                <option value="income">Income</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+
+                        </div>
+                      
+                    </div>
+                  
+                    <div class="transacton-input-item">
+                        <label for="order-filter">Order</label>
+                        <div class="select-wrapper">
+                            <select id="order-filter">
+                                <option value="date-desc">Date: Newest → Oldest</option>
+                                <option value="date-asc">Date: Oldest → Newest</option>
+                                <option value="amount-desc">Amount: Highest → Lowest</option>
+                                <option value="amount-asc">Amount: Lowest → Highest</option>
+                                <option value="category-asc">Category: A → Z</option>
+                                <option value="category-desc">Category: Z → A</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                      
+                    </div>
+                  </div>
             <table class="transactions-table">
                 <thead>
                     <tr>

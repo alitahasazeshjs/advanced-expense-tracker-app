@@ -61,9 +61,10 @@ import { getBudgets } from "../data/budgetsData.js";
 //   },
 // ];
 
-const budgets = getBudgets()
 
 export const renderDashbaord = () => {
+  const budgets = getBudgets()
+  console.log("Budgets:" ,budgets);
   const cards = [
     {
       header: "Total Income",
@@ -99,7 +100,7 @@ export const renderDashbaord = () => {
         </div>
         <h1 class="title"><i class="fa-solid fa-chart-pie" style="color: #8B5CF6"></i> Budgets</h1>
         <div class="budgets">
-            ${budgets.length > 0 ? budgets
+            ${budgets.length > 0 ? budgets.slice(-5).reverse()
               .map((budget) => {
                 return Budget(
                   budget.category,

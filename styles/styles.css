@@ -167,6 +167,16 @@ select {
 .modal-cancel-btn {
   background-color: rgb(255, 49, 49);
 }
+
+.delete-modal-delete-btn {
+  color: white;
+}
+
+.modal-cancel-btn {
+  color: var(--text-color);
+
+}
+
 .delete-modal-delete-btn:hover,
 .modal-cancel-btn:hover {
   background-color: rgb(247, 4, 4);
@@ -179,6 +189,7 @@ select {
 }
 .delete-modal-cancel-btn {
   background-color: var(--secondary-color);
+  color: var(--text-color)!important;
 }
 .delete-modal-cancel-btn:hover {
   background-color: var(--secondary-deep-color);
@@ -214,6 +225,21 @@ select {
     text-transform: capitalize;
 }
 
+.empty-state-container {
+  height: 30vh;
+  flex-direction: column;
+  gap: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty-state-container h1 {
+  font-size: 1.5rem;
+  color: var(--text-color-secondary)
+}
+.empty-state-container p {
+  color: var(--text-color-secondary)
+}
 
 @media (max-width: 1350px) {
   #app {

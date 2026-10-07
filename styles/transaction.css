@@ -45,7 +45,11 @@
   max-height: 70vh;
   max-width: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
+
 .transactions-container table {
   border-collapse: separate;
   border-spacing: 0;

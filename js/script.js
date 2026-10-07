@@ -378,10 +378,11 @@ function handleAddBugetButton() {
           <div class="select-wrapper">
             <select id="budget-category">
                 ${getCategories().map((category) => {
-                console.log(category.name);
-                return `<option value="${category.name.toLowerCase()}" data-type="${
-                  category.type
-                }" data-id="${category.id}">${category.name}</option>`;
+                  if(category.type === 'expense') {
+                    return `<option value="${category.name.toLowerCase()}" data-type="${
+                      category.type
+                    }" data-id="${category.id}">${category.name}</option>`;
+                  }
               })}
             </select>
             <i class="fa-solid fa-chevron-down"></i>
@@ -577,7 +578,7 @@ function handleTransactionActions(isFiltered) {
         deleteTransaction(id);
 
         applyTransactionsFilters();
-        if (isFiltered) {
+        if (isFiltered && getTransactions().length > 0) {
           return;
         } else {
           navigateTo("transactions");

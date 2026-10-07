@@ -3,9 +3,8 @@ import { getTransactions } from "../data/transactionData.js";
 
 export const Budget = (category, amount, categoryId, actions) => {
     const categoryItem = getCategory(categoryId)[0];
-    console.log("Category Id:", categoryId)
     const color = categoryItem.color;
-    const transactions = getTransactions().filter(trans => trans.id === category);
+    const transactions = getTransactions().filter(trans => trans.category === category);
     let spent = 0;
     transactions.map(trans => {
         spent += Number(trans.amount);
@@ -29,7 +28,7 @@ export const Budget = (category, amount, categoryId, actions) => {
             </div>
             <div class="budget-footer">
                 <span>$${amount - spent} left</span>
-                <span>${transactions} Transactions</span>
+                <span>${transactions.length} Transactions</span>
             </div>
         </div>
     `
