@@ -238,7 +238,8 @@ select {
   color: var(--text-color-secondary)
 }
 .empty-state-container p {
-  color: var(--text-color-secondary)
+  color: var(--text-color-secondary);
+  text-align: center;
 }
 
 @media (max-width: 1350px) {
@@ -286,6 +287,12 @@ select {
     z-index: 1000;
     background-color: transparent;
     border-radius: 0.3rem;
+  }
+  .empty-state-container h1 {
+    font-size: 1.2rem;
+  }
+  .empty-state-container p {
+    font-size: 0.9rem;
   }
 }
 

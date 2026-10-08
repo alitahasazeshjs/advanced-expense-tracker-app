@@ -2,117 +2,120 @@ import { CategoryRow } from "../components/categoryRow.js";
 import { getCategories } from "../data/categoriesData.js";
 import { renderCategoriesRow } from "../services/categoriesServices.js";
 const categories = [
-    {
-        name: "Food & Dining",
-        type: "Expense",
-        transactions: 24,
-        amount: 485.50
-    },
-    {
-        name: "Transportation",
-        type: "Expense",
-        transactions: 12,
-        amount: 156.75
-    },
-    {
-        name: "Shopping",
-        type: "Expense",
-        transactions: 18,
-        amount: 320.00
-    },
-    {
-        name: "Entertainment",
-        type: "Expense",
-        transactions: 8,
-        amount: 95.50
-    },
-    {
-        name: "Bills & Utilities",
-        type: "Expense",
-        transactions: 10,
-        amount: 275.25
-    },
-    {
-        name: "Health",
-        type: "Expense",
-        transactions: 5,
-        amount: 120.00
-    },
-    {
-        name: "Salary",
-        type: "Income",
-        transactions: 2,
-        amount: 2500.00
-    },
-    {
-        name: "Freelance",
-        type: "Income",
-        transactions: 6,
-        amount: 850.00
-    },
-    {
-        name: "Gifts",
-        type: "Income",
-        transactions: 3,
-        amount: 200.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
-    {
-        name: "Other",
-        type: "Expense",
-        transactions: 7,
-        amount: 75.00
-    },
+  {
+    name: "Food & Dining",
+    type: "Expense",
+    transactions: 24,
+    amount: 485.5,
+  },
+  {
+    name: "Transportation",
+    type: "Expense",
+    transactions: 12,
+    amount: 156.75,
+  },
+  {
+    name: "Shopping",
+    type: "Expense",
+    transactions: 18,
+    amount: 320.0,
+  },
+  {
+    name: "Entertainment",
+    type: "Expense",
+    transactions: 8,
+    amount: 95.5,
+  },
+  {
+    name: "Bills & Utilities",
+    type: "Expense",
+    transactions: 10,
+    amount: 275.25,
+  },
+  {
+    name: "Health",
+    type: "Expense",
+    transactions: 5,
+    amount: 120.0,
+  },
+  {
+    name: "Salary",
+    type: "Income",
+    transactions: 2,
+    amount: 2500.0,
+  },
+  {
+    name: "Freelance",
+    type: "Income",
+    transactions: 6,
+    amount: 850.0,
+  },
+  {
+    name: "Gifts",
+    type: "Income",
+    transactions: 3,
+    amount: 200.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
+  {
+    name: "Other",
+    type: "Expense",
+    transactions: 7,
+    amount: 75.0,
+  },
 ];
 
 export const renderCategories = () => {
+  const categories = getCategories();
   return `
-         <div class="categories">
-            <div class="categories-header">
-                <h1 class="title"><i class="fa-solid fa-tags" style="color: var(--blue-color)"></i>Categories</h1>
-                <button class="page-add-btn add-category-btn"><i class="fa-solid fa-plus"></i> Add Category</button>
-            </div>
+  <div class="categories-header">
+      <h1 class="title"><i class="fa-solid fa-tags" style="color: var(--blue-color)"></i>Categories</h1>
+      <button class="page-add-btn add-category-btn"><i class="fa-solid fa-plus"></i> Add Category</button>
+  </div>
+            ${
+              categories.length > 0
+                ? `<div class="categories">
             <div class="categories-input">
                  <div class="categories-input-item">
                     <label for="search-category">Search</label>
@@ -143,6 +146,9 @@ export const renderCategories = () => {
                     </tbody>
                 </table>
             </div>
-         </div>
+         </div>`
+                : `<div class="empty-state-container"><h1>No Categories!</h1><p>Start adding categories to see them here!</p></div>`
+            }
+         
     `;
 };

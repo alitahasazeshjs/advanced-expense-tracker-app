@@ -10,7 +10,7 @@
     - budge color
 - ## Todos:
 - FIX: 
-    - JS: after adding budget it doesn't get displayed live in budgets list
+    - JS: after adding budget it doesn't get displayed live in budgets list [x]
     - JS: when we don't enter some input in add modal, the alert shows up, after clicking the "ok" button in alerts, the modal also disappears
     - CSS: the settings button in navbar on mobile screen gets displayed outside of the screen and should be scrolled to be seen
 - IMPLEMENT:
@@ -20,3 +20,14 @@
     - EDITING and DELETING budgets
     - dispalying spent, left, transactions and spent progress bar
 - 3:15 P.M Good luck :)
+
+## 10/7/2026 Wendeasay 7:00 P.M
+- removed income transactions from add budget categories list
+- fixed live update list
+- added some empty states ui (still remained)
+- pushed the code to github "Fixed some bugs"
+## Todos:
+- need to clean some UI
+- when there is one budget, it takes the full of it's container width and look really weird
+
+- 8:00 P.M Good luck :) 

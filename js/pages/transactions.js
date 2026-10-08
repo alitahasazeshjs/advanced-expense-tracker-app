@@ -161,7 +161,6 @@ export const renderTransactions = () => {
              <button class="page-add-btn add-transaction-btn"><i class="fa-solid fa-plus"></i> Add Transaction</button>
         </div>
         
-        <div class="transactions-container">
             ${
               getTransactions().length === 0
                 ? `<div class='empty-state-container'><h1>No Transactions!</h1><p>Add transactions to see them here</p></div>`
@@ -177,11 +176,11 @@ export const renderTransactions = () => {
                             <select id="category-filter">
                                 <option value="all" selected>All</option>
                                 ${getCategories().map((category) => {
-                                              console.log(category.name);
-                                              return `<option value="${category.name.toLowerCase()}" data-type="${
-                                                category.type
-                                              }">${category.name}</option>`;
-                                            })}
+                                  console.log(category.name);
+                                  return `<option value="${category.name.toLowerCase()}" data-type="${
+                                    category.type
+                                  }">${category.name}</option>`;
+                                })}
                             </select>
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
@@ -217,6 +216,8 @@ export const renderTransactions = () => {
                       
                     </div>
                   </div>
+        <div class="transactions-container">
+
             <table class="transactions-table">
                 <thead>
                     <tr>
@@ -231,10 +232,11 @@ export const renderTransactions = () => {
                 <tbody>
                     ${renderTransactionsRows()}
                 </tbody>
-            </table>`
+                </table>
+                </div>
+                `
             }
            
-        </div>
   </div>
        
     `;

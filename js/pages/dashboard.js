@@ -108,10 +108,10 @@ export const renderDashbaord = () => {
                   budget.categoryId
                 );
               })
-              .join("") : `<h1>No Budgets Yet</h1>`}    
+              .join("") : `<div class="empty-state-container"><h1>No Budgets!</h1><p>Start adding budgets to see theme there.</p></div>`}    
         </div>
         <h1 class="title"><i class="fa-solid fa-arrow-right-arrow-left" style="color: #F59E0B"></i> Recent Transactions</h1>
-        ${recentTrans.length === 0 ? `<div class="no-recent-trans-cont"><p class="no-recent-trans-message" >No Recent Transactions Yet</p></div>` : ` 
+        ${recentTrans.length === 0 ? `<div class="empty-state-container"><h1>No Transactions!</h1><p>Start adding transactions to see them here.</p></div>` : ` 
         <div class="recent-transactions">
             <div class="recent-trans-table-container">
                 <table class="recent-transactions-table">

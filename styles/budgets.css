@@ -16,8 +16,8 @@
   align-items: center;
 }
 .budget-summary-cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 0.8rem;
 }
 .budget-summary-cards .card {

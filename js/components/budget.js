@@ -8,7 +8,8 @@ export const Budget = (category, amount, categoryId, actions) => {
     let spent = 0;
     transactions.map(trans => {
         spent += Number(trans.amount);
-    })
+    });
+    console.log("Spent:", ((spent * 100) / amount))
     return `
         <div class="budget-card ${actions ? 'budget-list' : ''}">
             ${actions ? ` <div class="budget-actions">
@@ -20,14 +21,14 @@ export const Budget = (category, amount, categoryId, actions) => {
             </div>` : ''}
            
             <div class="budget-header">
-                <h3><div class="budget-color" style="background-color: ${color}; width: 10px; height: 10px; border-radius: 50%;"></div>${category}</h3>
+                <h3 style="text-transform: capitalize"><div class="budget-color" style="background-color: ${color}; width: 10px; height: 10px; border-radius: 50%;"></div>${category}</h3>
                 <span>$${spent}/$${amount}</span>
             </div>
             <div class="budget-progress-bar">
-                <span style="width: ${(spent * 100) / amount}%; background-color: ${color}"></span>
+                <span style="width: ${Math.min((spent * 100) / amount, 100)}%; background-color: ${color}"></span>
             </div>
             <div class="budget-footer">
-                <span>$${amount - spent} left</span>
+                <span style="${spent > amount ? `color: #c80000` : ``}">$${spent > amount ? (spent - amount) + ` exceeded` : (amount - spent) + ` left`}</span>
                 <span>${transactions.length} Transactions</span>
             </div>
         </div>

@@ -12,6 +12,10 @@ export const addTransaction = () => {
     alert("Please enter an amount");
     return;
   }
+  if(category.value === "no-category") {
+    alert("No Category! Please create a category!");
+    return;
+  }
   if (desc.value === "") {
     alert("Please enter the description");
     return;

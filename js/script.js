@@ -192,7 +192,7 @@ const navigateTo = (page) => {
   }
   if (selected === "dashboard") {
     const seeAllTransBtn = document.querySelector(".all-trans-btn");
-    if(seeAllTransBtn) {
+    if (seeAllTransBtn) {
       seeAllTransBtn.addEventListener("click", () => {
         navigateTo("transactions");
       });
@@ -342,8 +342,6 @@ function handleAddCatButton() {
     const modalAddCategoryBtn = document.querySelector(".modal-pos-btn");
     modalAddCategoryBtn.addEventListener("click", () => {
       addCategory();
-      modalRoot.classList.add("remove");
-      navigateTo("categories");
     });
   });
 }
@@ -377,13 +375,19 @@ function handleAddBugetButton() {
           <label for="budget-category">Category</label>
           <div class="select-wrapper">
             <select id="budget-category">
-                ${getCategories().map((category) => {
-                  if(category.type === 'expense') {
-                    return `<option value="${category.name.toLowerCase()}" data-type="${
-                      category.type
-                    }" data-id="${category.id}">${category.name}</option>`;
-                  }
-              })}
+                ${
+                  getCategories().length === 0
+                    ? `<option selected value="no-category">No Category</option>`
+                    : getCategories().map((category) => {
+                        if (category.type === "expense") {
+                          return `<option value="${category.name.toLowerCase()}" data-type="${
+                            category.type
+                          }" data-id="${category.id}">${
+                            category.name
+                          }</option>`;
+                        }
+                      })
+                }
             </select>
             <i class="fa-solid fa-chevron-down"></i>
           </div>
@@ -407,11 +411,11 @@ function handleAddBugetButton() {
       addBudgetModalConf.content
     );
 
-    const modalAddBudgetButton = document.querySelector('.modal-pos-btn');
-    modalAddBudgetButton.addEventListener('click', () => {
+    const modalAddBudgetButton = document.querySelector(".modal-pos-btn");
+    modalAddBudgetButton.addEventListener("click", () => {
       addBudget();
       navigateTo("budgets");
-    })
+    });
   });
 }
 
@@ -419,7 +423,11 @@ function handleAddBugetButton() {
 
 function handleAddTransactionModal() {
   const addTransactionBtn = document.querySelector(".add-transaction-btn");
-  addTransactionBtn.addEventListener("click", () => {
+  addTransactionBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    console.log("Add Transaction button clicked")
+    console.log("Add transaction e.target:", e.target);
+    console.log("Add transaction e.currentTarget:", e.currentTarget);
     const addTransactionModal = {
       content: `
     <div class="modal-inner">
@@ -431,7 +439,7 @@ function handleAddTransactionModal() {
         <label for="transaction-category">Category</label>
         <div class="select-wrapper">
           <select id="transaction-category">
-            ${getCategories().map((category) => {
+            ${getCategories().length === 0 ? `<option value="no-category">No Category</option>` : getCategories().map((category) => {
               console.log(category.name);
               return `<option value="${category.name.toLowerCase()}" data-type="${
                 category.type
@@ -675,7 +683,7 @@ function handleCategoriesActions(isFiltered) {
       modalDeleteBtn.addEventListener("click", (e) => {
         deleteCategory(id);
         applyCategoriesFilters();
-        if (isFiltered) {
+        if (isFiltered && getCategories().length > 0) {
           return;
         } else {
           navigateTo("categories");
@@ -816,9 +824,6 @@ function handleCategoriesFilter() {
   };
   searchCategory.addEventListener("input", applyCategoriesFilters);
 }
-
-
-
 
 // Reviewed the git hub lessons, and pushed this project to my github
 // Have to implement the budgets functionallity and also learn as much about gihub
