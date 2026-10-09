@@ -1,22 +1,22 @@
 import { getCategory } from "../data/categoriesData.js"
 import { getTransactions } from "../data/transactionData.js";
 
-export const Budget = (category, amount, categoryId, actions) => {
+export const Budget = (id, category, amount, categoryId, actions) => {
     const categoryItem = getCategory(categoryId)[0];
-    const color = categoryItem.color;
+    const color = categoryItem?.color;
     const transactions = getTransactions().filter(trans => trans.category === category);
     let spent = 0;
     transactions.map(trans => {
         spent += Number(trans.amount);
     });
-    console.log("Spent:", ((spent * 100) / amount))
+
     return `
         <div class="budget-card ${actions ? 'budget-list' : ''}">
             ${actions ? ` <div class="budget-actions">
                 <button class="budget-actions-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 <div class="budget-actions-dropdown">
-                    <button><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button><i class="fa-solid fa-trash-can"></i> Delete</button>
+                    <button class="edit-budget-btn" data-id="${id}"><i class="fa-solid fa-pen"></i> Edit</button>
+                    <button class="delete-budget-btn" data-id="${id}"><i class="fa-solid fa-trash-can"></i> Delete</button>
                 </div>
             </div>` : ''}
            

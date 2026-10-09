@@ -55,6 +55,7 @@ export const renderBudgets = () => {
                     ? `${budgets
                         .map((budget) => {
                           return Budget(
+                            budget.id,
                             budget.category,
                             budget.amount,
                             budget.categoryId,

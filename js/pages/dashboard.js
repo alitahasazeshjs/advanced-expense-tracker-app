@@ -103,6 +103,7 @@ export const renderDashbaord = () => {
             ${budgets.length > 0 ? budgets.slice(-5).reverse()
               .map((budget) => {
                 return Budget(
+                  budget.id,
                   budget.category,
                   budget.amount,
                   budget.categoryId

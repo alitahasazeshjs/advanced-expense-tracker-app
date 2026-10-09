@@ -19,6 +19,7 @@ import {
 } from "./services/categoryServices.js";
 import { renderCategoriesRow } from "./services/categoriesServices.js";
 import { addBudget } from "./pages/budgetServices.js";
+import { getBudget, getBudgets } from "./data/budgetsData.js";
 
 // Elements
 const app = document.getElementById("app");
@@ -184,6 +185,7 @@ const navigateTo = (page) => {
   if (selected === "budgets") {
     handleBudgetActionsDropDown();
     handleAddBugetButton();
+    handleBudgetActions();
   }
   if (selected === "transactions") {
     handleAddTransactionModal();
@@ -354,16 +356,151 @@ function handleBudgetActionsDropDown() {
 
   budgetActionsBtn.forEach((budgetActionBtn) => {
     budgetActionBtn.addEventListener("click", (e) => {
+      const dropdown = e.target.parentElement.nextElementSibling;
+
+      const isOpen = dropdown.classList.contains("open");
+
       budgetDropdowns.forEach((dropdown) => {
         dropdown.classList.remove("open");
       });
-      console.log(e.target);
-      const dropdown =
-        e.target.parentElement.nextElementSibling.classList.toggle("open");
-      console.log(dropdown);
+      if (!isOpen) {
+        dropdown.classList.add("open");
+      }
     });
   });
+  document.addEventListener("click", (e) => {
+    const clickedInsideDropdown = e.target.closest(".budget-actions-dropdown");
+    const clickedDropdownbtn = e.target.closest(".budget-actions-btn");
+    if (!clickedInsideDropdown && !clickedDropdownbtn) {
+      budgetDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("open");
+      });
+    }
+  });
 }
+
+// Budget Edit and Delete Logic
+function handleBudgetActions() {
+  const editBudgetBtns = document.querySelectorAll(".edit-budget-btn");
+  const deleteBudgetBtns = document.querySelectorAll(".delete-budget-btn");
+
+  editBudgetBtns.forEach((editBtn) => {
+    editBtn.addEventListener("click", () => {
+
+      const budgetDropdowns = document.querySelectorAll(".budget-actions-dropdown");
+      budgetDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('open');
+      })
+
+      const budgetId = editBtn.dataset.id;
+      const budget = getBudget(budgetId)[0];
+      const editBudgetModalConf = {
+        content: `
+          <div class="modal-inner add-budget-modal">
+            <div class="modal-item add-budget-item">
+              <label for="budget-category">Category</label>
+              <div class="select-wrapper">
+                <select id="budget-category">
+                    ${
+                      getCategories().length === 0
+                        ? `<option selected value="no-category">No Category</option>`
+                        : getCategories().map((category) => {
+                            if (category.type === "expense") {
+                              return `<option value="${category.name.toLowerCase()}" data-type="${
+                                category.type
+                              }" data-id="${category.id}" ${
+                                budget.category === category.name.toLowerCase()
+                                  ? `selected`
+                                  : ``
+                              }>${category.name}</option>`;
+                            }
+                          })
+                    }
+                </select>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="modal-item add-budget-item">
+              <label for="budget-type">Budget Amount</label>
+              <input type="number" id="budget-amount" placeholder="100, 200..." value="${
+                budget.amount
+              }"/>
+            </div>
+          </div>
+          <div class="modal-footer-buttons">
+            <button class="modal-cancel-btn">Cancel</button>
+            <button class="modal-pos-btn">Edit Budget</button>
+          </div>
+        `,
+      };
+      modalRoot.classList.remove("remove");
+      modalRoot.innerHTML = Modal(
+        "<i class='fa-solid fa-chart-pie' style='color: var(--blue-color)'></i>Edit Budget",
+        editBudgetModalConf.content
+      );
+
+      const editBudgetBtn = document.querySelector('.modal-pos-btn');
+      editBudgetBtn.addEventListener('click', () => {
+        const updatedBudgetCategory = document.querySelector('#budget-category');
+        const updatedBudgetAmount = document.querySelector('#budget-amount');
+        const updatedCategoryId = updatedBudgetCategory.selectedOptions[0].dataset.id;
+        if(budget.category.toLowerCase() === updatedBudgetCategory.value.toLowerCase() && budget.amount === updatedBudgetAmount.value) {
+          alert("Please enter some changes");
+          return;
+        }
+        
+        const budgets = getBudgets();
+        const budgetIndex =  budgets.findIndex(budget => budget.id === budgetId);
+        budgets[budgetIndex].category = updatedBudgetCategory.value;
+        budgets[budgetIndex].amount = updatedBudgetAmount.value;
+        budgets[budgetIndex].categoryId = updatedCategoryId;
+      
+        localStorage.setItem('budgets', JSON.stringify(budgets));
+        modalRoot.classList.add('remove');
+        navigateTo("budgets");
+      })
+    });
+  });
+
+  deleteBudgetBtns.forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", () => {
+
+      const budgetDropdowns = document.querySelectorAll(".budget-actions-dropdown");
+      budgetDropdowns.forEach(dropdown => {
+        dropdown.classList.remove('open');
+      })
+
+      const budgetId = deleteBtn.dataset.id;
+      const deleteCategoryModal = {
+        content: `
+              <div class="modal-inner delete-modal">
+                <h1 class="delete-modal-title">Do you want to delete this budget?</h1>
+                </div>
+                <div class="modal-footer-buttons add-transaction-buttons">
+                <button class="modal-cancel-btn delete-modal-cancel-btn">Cancel</button>
+                <button class="delete-modal-delete-btn">Delete</button>
+            </div>
+          `,
+      };
+      modalRoot.classList.remove("remove");
+      modalRoot.innerHTML = Modal(
+        "<i class='fa-solid fa-trash-can'></i> Delete Budget",
+        deleteCategoryModal.content
+      );
+
+      const editBudgetBtn = document.querySelector('.delete-modal-delete-btn');
+      editBudgetBtn.addEventListener('click', () => {
+       
+        const updatedBudgets = getBudgets().filter(budget => budget.id !== budgetId);
+      
+        localStorage.setItem('budgets', JSON.stringify(updatedBudgets));
+        modalRoot.classList.add('remove');
+        navigateTo("budgets");
+      })
+    });
+  });
+
+} 
 
 // Handle Add Budget Modal
 
@@ -425,7 +562,7 @@ function handleAddTransactionModal() {
   const addTransactionBtn = document.querySelector(".add-transaction-btn");
   addTransactionBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    console.log("Add Transaction button clicked")
+    console.log("Add Transaction button clicked");
     console.log("Add transaction e.target:", e.target);
     console.log("Add transaction e.currentTarget:", e.currentTarget);
     const addTransactionModal = {
@@ -439,12 +576,16 @@ function handleAddTransactionModal() {
         <label for="transaction-category">Category</label>
         <div class="select-wrapper">
           <select id="transaction-category">
-            ${getCategories().length === 0 ? `<option value="no-category">No Category</option>` : getCategories().map((category) => {
-              console.log(category.name);
-              return `<option value="${category.name.toLowerCase()}" data-type="${
-                category.type
-              }">${category.name}</option>`;
-            })}
+            ${
+              getCategories().length === 0
+                ? `<option value="no-category">No Category</option>`
+                : getCategories().map((category) => {
+                    console.log(category.name);
+                    return `<option value="${category.name.toLowerCase()}" data-type="${
+                      category.type
+                    }">${category.name}</option>`;
+                  })
+            }
           </select>
           <i class="fa-solid fa-chevron-down"></i>
         </div>
