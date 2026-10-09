@@ -1,3 +1,4 @@
+import { getBudget, getBudgets } from "../data/budgetsData.js";
 import { getCategories, getCategory } from "../data/categoriesData.js";
 import { getTransactions } from "../data/transactionData.js";
 import { renderCategoriesRow } from "./categoriesServices.js";
@@ -91,13 +92,16 @@ export const editCategory = (id) => {
 
 export const deleteCategory = (id) => {
   const categories = getCategories();
+  const budgets = getBudgets();
   const category = getCategory(id)[0];
   const transactions = getTransactions();
   const updatedCategories = categories.filter((category) => category.id !== id);
   const updatedTransactions = transactions.filter((transaction) => {
     return transaction.category.toLowerCase() !== category.name.toLowerCase();
   });
+  const updatedBudgets = budgets.filter(budget => budget.category.toLowerCase() !== category.name.toLowerCase());
   localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
   localStorage.setItem("categories", JSON.stringify(updatedCategories));
+  localStorage.setItem("budgets", JSON.stringify(updatedBudgets)) ;
   modalRoot.classList.add("remove");
 };
