@@ -12,9 +12,6 @@
 @import "./addCategoryModal.css";
 @import "./budgets.css";
 /* Parents General Styles */
-.main-body {
-  overflow-x: none;
-}
 * {
   padding: 0;
   margin: 0;
@@ -27,9 +24,10 @@ body {
 }
 .main-body {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   width: 100%;
+  overflow-x: none;
 }
 button {
   border: none;
@@ -280,7 +278,7 @@ select {
     width: 100%;
     margin: 0;
     left: -100%;
-    height: 100vh;
+    height: 100dvh;
   }
   #sidebar.active .sidebar-toggle {
     right: 10px;

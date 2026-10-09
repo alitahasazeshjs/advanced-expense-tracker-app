@@ -200,7 +200,6 @@ const navigateTo = (page) => {
       });
     }
   }
-  console.log("Reached hereee:");
   sidebar.classList.remove("active");
   if (sidebar.classList.contains("active")) {
     sidebarToggle.innerHTML = `<i class="fa-solid fa-close"></i>`;
@@ -263,7 +262,7 @@ const settingsModalConf = {
       </div>
     </div>
     <div class="settings-modal-item">
-      <span class="settings-label">Transaction Type:</span>
+      <span class="settings-label">Transaction Type: <span>(Not implemenet Yet!)</span></span>
       <div class="select-wrapper">
         <select>
           <option value="expense">Expense</option>
@@ -273,7 +272,7 @@ const settingsModalConf = {
       </div>
     </div>
      <div class="settings-modal-item">
-      <span class="settings-label">Currency:</span>
+      <span class="settings-label">Currency: <span>(Not Implemenet Yet!)</span> </span>
       <div class="select-wrapper">
         <select>
           <option value="usd">USD (US Dollor)</option>
@@ -284,7 +283,7 @@ const settingsModalConf = {
       </div>
     </div>
     <div class="settings-modal-item data-options">
-      <span class="settings-label">Data:</span>
+      <span class="settings-label">Data: <span>(Not Implemenet Yet!)</span> </span>
       <div class="data-buttons">
         <button><i class="fa-solid fa-file-export"></i> Export</button>
         <button><i class="fa-solid fa-file-import"></i> Import</button>

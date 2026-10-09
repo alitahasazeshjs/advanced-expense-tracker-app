@@ -7,6 +7,9 @@
   color: var(--text-color);
   font-size: 0.9rem;
 }
+.settings-label span {
+  font-size: 0.7rem;
+}
 .settings-content select {
   width: 100px;
   padding-inline: 0.4rem;
