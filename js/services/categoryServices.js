@@ -30,7 +30,6 @@ export const addCategory = () => {
   categories.push(newCat);
   localStorage.setItem("categories", JSON.stringify(categories));
   modalRoot.classList.add('remove');
-  navigateTo("categories");
 };
 
 export const getCatTrans = (category) => {

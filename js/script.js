@@ -32,7 +32,6 @@ const modalRoot = document.querySelector("#modal-root");
 const sidebar = document.querySelector("#sidebar");
 const sidebarToggle = document.querySelector(".sidebar-toggle");
 
-
 let applyTransactionsFilters;
 let applyCategoriesFilters;
 
@@ -201,7 +200,8 @@ const navigateTo = (page) => {
       });
     }
   }
-  sidebar.classList.remove('active');
+  console.log("Reached hereee:");
+  sidebar.classList.remove("active");
   if (sidebar.classList.contains("active")) {
     sidebarToggle.innerHTML = `<i class="fa-solid fa-close"></i>`;
   } else {
@@ -349,6 +349,7 @@ function handleAddCatButton() {
     const modalAddCategoryBtn = document.querySelector(".modal-pos-btn");
     modalAddCategoryBtn.addEventListener("click", () => {
       addCategory();
+      navigateTo("categories");
     });
   });
 }
@@ -390,11 +391,12 @@ function handleBudgetActions() {
 
   editBudgetBtns.forEach((editBtn) => {
     editBtn.addEventListener("click", () => {
-
-      const budgetDropdowns = document.querySelectorAll(".budget-actions-dropdown");
-      budgetDropdowns.forEach(dropdown => {
-        dropdown.classList.remove('open');
-      })
+      const budgetDropdowns = document.querySelectorAll(
+        ".budget-actions-dropdown"
+      );
+      budgetDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("open");
+      });
 
       const budgetId = editBtn.dataset.id;
       const budget = getBudget(budgetId)[0];
@@ -443,36 +445,45 @@ function handleBudgetActions() {
         editBudgetModalConf.content
       );
 
-      const editBudgetBtn = document.querySelector('.modal-pos-btn');
-      editBudgetBtn.addEventListener('click', () => {
-        const updatedBudgetCategory = document.querySelector('#budget-category');
-        const updatedBudgetAmount = document.querySelector('#budget-amount');
-        const updatedCategoryId = updatedBudgetCategory.selectedOptions[0].dataset.id;
-        if(budget.category.toLowerCase() === updatedBudgetCategory.value.toLowerCase() && budget.amount === updatedBudgetAmount.value) {
+      const editBudgetBtn = document.querySelector(".modal-pos-btn");
+      editBudgetBtn.addEventListener("click", () => {
+        const updatedBudgetCategory =
+          document.querySelector("#budget-category");
+        const updatedBudgetAmount = document.querySelector("#budget-amount");
+        const updatedCategoryId =
+          updatedBudgetCategory.selectedOptions[0].dataset.id;
+        if (
+          budget.category.toLowerCase() ===
+            updatedBudgetCategory.value.toLowerCase() &&
+          budget.amount === updatedBudgetAmount.value
+        ) {
           alert("Please enter some changes");
           return;
         }
-        
+
         const budgets = getBudgets();
-        const budgetIndex =  budgets.findIndex(budget => budget.id === budgetId);
+        const budgetIndex = budgets.findIndex(
+          (budget) => budget.id === budgetId
+        );
         budgets[budgetIndex].category = updatedBudgetCategory.value;
         budgets[budgetIndex].amount = updatedBudgetAmount.value;
         budgets[budgetIndex].categoryId = updatedCategoryId;
-      
-        localStorage.setItem('budgets', JSON.stringify(budgets));
-        modalRoot.classList.add('remove');
+
+        localStorage.setItem("budgets", JSON.stringify(budgets));
+        modalRoot.classList.add("remove");
         navigateTo("budgets");
-      })
+      });
     });
   });
 
   deleteBudgetBtns.forEach((deleteBtn) => {
     deleteBtn.addEventListener("click", () => {
-
-      const budgetDropdowns = document.querySelectorAll(".budget-actions-dropdown");
-      budgetDropdowns.forEach(dropdown => {
-        dropdown.classList.remove('open');
-      })
+      const budgetDropdowns = document.querySelectorAll(
+        ".budget-actions-dropdown"
+      );
+      budgetDropdowns.forEach((dropdown) => {
+        dropdown.classList.remove("open");
+      });
 
       const budgetId = deleteBtn.dataset.id;
       const deleteCategoryModal = {
@@ -492,19 +503,19 @@ function handleBudgetActions() {
         deleteCategoryModal.content
       );
 
-      const editBudgetBtn = document.querySelector('.delete-modal-delete-btn');
-      editBudgetBtn.addEventListener('click', () => {
-       
-        const updatedBudgets = getBudgets().filter(budget => budget.id !== budgetId);
-      
-        localStorage.setItem('budgets', JSON.stringify(updatedBudgets));
-        modalRoot.classList.add('remove');
+      const editBudgetBtn = document.querySelector(".delete-modal-delete-btn");
+      editBudgetBtn.addEventListener("click", () => {
+        const updatedBudgets = getBudgets().filter(
+          (budget) => budget.id !== budgetId
+        );
+
+        localStorage.setItem("budgets", JSON.stringify(updatedBudgets));
+        modalRoot.classList.add("remove");
         navigateTo("budgets");
-      })
+      });
     });
   });
-
-} 
+}
 
 // Handle Add Budget Modal
 
@@ -840,70 +851,75 @@ function handleTransactionsFilter() {
     ".transactions-table tbody"
   );
 
+  const searchTransValue = searchTrans?.value;
+  const categoryFilterValue = categoryFilter?.value;
+  const typeFilterValue = typeFilter?.value;
+  const orderFilterValue = orderFilter?.value;
+
   applyTransactionsFilters = () => {
     let transactions = getTransactions();
-    if (categoryFilter.value === "all" && typeFilter.value === "all") {
+    if (categoryFilterValue === "all" && typeFilter?.value === "all") {
       transactions = getTransactions();
     }
-    if (searchTrans.value !== "") {
+    if (searchTransValue !== "") {
       transactions = transactions.filter(
         (trans) =>
           trans.category
             .toLowerCase()
-            .includes(searchTrans.value.trim().toLowerCase()) ||
+            .includes(searchTransValue.trim().toLowerCase()) ||
           trans.desc
             .toLowerCase()
-            .includes(searchTrans.value.trim().toLowerCase())
+            .includes(searchTransValue.trim().toLowerCase())
       );
     }
     // Category Filter logic
-    if (categoryFilter.value !== "all") {
+    if (categoryFilterValue !== "all") {
       transactions = transactions.filter((trans) =>
-        trans.category
-          .toLowerCase()
-          .includes(categoryFilter.value.toLowerCase())
+        trans.category.toLowerCase().includes(categoryFilterValue.toLowerCase())
       );
     }
     // Type Filter Logic
-    if (typeFilter.value !== "all") {
+    if (typeFilterValue !== "all") {
       transactions = transactions.filter((trans) =>
-        trans.type.toLowerCase().includes(typeFilter.value.toLowerCase())
+        trans.type.toLowerCase().includes(typeFilterValue.toLowerCase())
       );
     }
 
     // Order filter
-    if (orderFilter.value === "date-desc") {
+    if (orderFilterValue === "date-desc") {
       transactions = transactions.sort(
         (a, b) => new Date(b.date) - new Date(a.date)
       );
     }
-    if (orderFilter.value === "date-asc") {
+    if (orderFilterValue === "date-asc") {
       transactions = transactions.sort(
         (a, b) => new Date(a.date) - new Date(b.date)
       );
     }
-    if (orderFilter.value === "amount-desc") {
+    if (orderFilterValue === "amount-desc") {
       transactions = transactions.sort((a, b) => b.amount - a.amount);
     }
-    if (orderFilter.value === "amount-asc") {
+    if (orderFilterValue === "amount-asc") {
       transactions = transactions.sort((a, b) => a.amount - b.amount);
     }
-    if (orderFilter.value === "category-asc") {
+    if (orderFilterValue === "category-asc") {
       transactions = transactions.sort((a, b) =>
         a.category.localeCompare(b.category)
       );
     }
-    if (orderFilter.value === "category-desc") {
+    if (orderFilterValue === "category-desc") {
       transactions = transactions.sort((a, b) =>
         b.category.localeCompare(a.category)
       );
     }
 
-    if (transactions.length === 0 && getTransactions().length !== 0) {
-      transactionsTableBody.innerHTML =
-        "<p class='no-trans-found'>No Transactions!</p>";
-    } else {
-      transactionsTableBody.innerHTML = renderTransactionsRows(transactions);
+    if (transactionsTableBody) {
+      if (transactions.length === 0 && getTransactions().length !== 0) {
+        transactionsTableBody.innerHTML =
+          "<p class='no-trans-found'>No Transactions!</p>";
+      } else {
+        transactionsTableBody.innerHTML = renderTransactionsRows(transactions);
+      }
     }
 
     handleTransactionActions(true);
@@ -911,10 +927,10 @@ function handleTransactionsFilter() {
 
   applyTransactionsFilters();
 
-  searchTrans.addEventListener("input", applyTransactionsFilters);
-  categoryFilter.addEventListener("change", applyTransactionsFilters);
-  typeFilter.addEventListener("change", applyTransactionsFilters);
-  orderFilter.addEventListener("change", applyTransactionsFilters);
+  searchTrans?.addEventListener("input", applyTransactionsFilters);
+  categoryFilter?.addEventListener("change", applyTransactionsFilters);
+  typeFilter?.addEventListener("change", applyTransactionsFilters);
+  orderFilter?.addEventListener("change", applyTransactionsFilters);
 }
 
 // Categories Filter
@@ -957,7 +973,7 @@ function handleCategoriesFilter() {
     }
     handleCategoriesActions(true);
   };
-  searchCategory.addEventListener("input", applyCategoriesFilters);
+  searchCategory?.addEventListener("input", applyCategoriesFilters);
 }
 
 // Reviewed the git hub lessons, and pushed this project to my github
