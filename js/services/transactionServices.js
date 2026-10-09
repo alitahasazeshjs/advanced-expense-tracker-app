@@ -5,7 +5,6 @@ export const addTransaction = () => {
   const amount = document.querySelector("#transaction-amount");
   const category = document.querySelector("#transaction-category");
   const date = document.querySelector("#transaction-date");
-  console.log("Date:", new Date(date.value).toISOString())
   const desc = document.querySelector("#transaction-desc");
 
   if (amount.value === "") {
@@ -32,7 +31,6 @@ export const addTransaction = () => {
 
   const transactions = getTransactions();
   transactions.push(newTransaction);
-  console.log("New Transactions:", transactions);
   localStorage.setItem("transactions", JSON.stringify(transactions));
 
   modalRoot.classList.add("remove");
@@ -45,7 +43,6 @@ export const editTransaction = (id) => {
   const desc = document.querySelector("#transaction-desc");
   
 
-  console.log(amount.value);
 
   if (amount.value === "") {
     alert("Please enter an amount");

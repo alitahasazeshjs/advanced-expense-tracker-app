@@ -93,12 +93,9 @@ export const editCategory = (id) => {
 export const deleteCategory = (id) => {
   const categories = getCategories();
   const category = getCategory(id)[0];
-  console.log("Category:", category);
   const transactions = getTransactions();
   const updatedCategories = categories.filter((category) => category.id !== id);
   const updatedTransactions = transactions.filter((transaction) => {
-    console.log("tans cat:", transaction.category.toLowerCase());
-    console.log("cat name:", category.name.toLowerCase());
     return transaction.category.toLowerCase() !== category.name.toLowerCase();
   });
   localStorage.setItem("transactions", JSON.stringify(updatedTransactions));

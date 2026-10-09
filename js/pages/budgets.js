@@ -10,12 +10,16 @@ export const renderBudgets = () => {
     budgets.forEach(budget => {
         amount += Number(budget.amount)
     })
-    console.log("Amount: ", amount);
 
+    let spent = 0;
     const transactions = getTransactions().filter(transaction => {
         return budgets.some(budget => budget.category === transaction.category);
     });
-    console.log("Transactions:", transactions);
+    transactions.forEach(trans => {
+      spent += Number(trans.amount);
+    });
+
+    const remaining = amount - spent;
 
   const cards = [
     {
@@ -25,12 +29,12 @@ export const renderBudgets = () => {
     },
     {
       header: "Spent",
-      content: `<p class="amount red">-$525.00</p>`,
+      content: `<p class="amount red">-$${spent}</p>`,
       icon: `<i class="fa-solid fa-money-bill-transfer" style="color: red"></i>`,
     },
     {
       header: "Remaining",
-      content: `<p class="amount">$750</p>`,
+      content: `<p class="amount" style="color: var(--blue-color)">$${remaining < 0 ? 0 : remaining}</p>`,
       icon: `<i class="fa-solid fa-wallet" style="color: var(--blue-color)"></i>`,
     },
   ];

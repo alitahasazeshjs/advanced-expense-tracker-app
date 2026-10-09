@@ -153,7 +153,6 @@ const transactions = [
 ];
 
 export const renderTransactions = () => {
-  console.log("Got Rendered");
   return `  
   <div class="transactions">
         <div class="transactions-header">
@@ -176,7 +175,6 @@ export const renderTransactions = () => {
                             <select id="category-filter">
                                 <option value="all" selected>All</option>
                                 ${getCategories().map((category) => {
-                                  console.log(category.name);
                                   return `<option value="${category.name.toLowerCase()}" data-type="${
                                     category.type
                                   }">${category.name}</option>`;

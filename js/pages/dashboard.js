@@ -64,7 +64,6 @@ import { getBudgets } from "../data/budgetsData.js";
 
 export const renderDashbaord = () => {
   const budgets = getBudgets()
-  console.log("Budgets:" ,budgets);
   const cards = [
     {
       header: "Total Income",
@@ -78,7 +77,7 @@ export const renderDashbaord = () => {
     },
     {
       header: "Total Balance",
-      content: `<p class="amount" style="color: var(--blue-color)">$${getBalance()}</p>`,
+      content: `<p class="amount" style="color: ${getBalance() >= 0 ? `var(--blue-color)` : `red`}">${getBalance() >= 0 ? `$${getBalance()}` : `-$${Math.abs(getBalance())}`}</p>`,
       icon: `<i class="fa-solid fa-wallet" style="color: var(--blue-color)"></i>`,
     },
   ];

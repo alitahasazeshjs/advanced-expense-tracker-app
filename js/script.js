@@ -24,13 +24,14 @@ import { getBudget, getBudgets } from "./data/budgetsData.js";
 // Elements
 const app = document.getElementById("app");
 const navItems = document.querySelectorAll(".nav-item");
-console.log(navItems);
 
 const container = document.querySelector(".main-body");
 const settings = document.querySelector(".settings-item");
 const modalRoot = document.querySelector("#modal-root");
 
 const sidebar = document.querySelector("#sidebar");
+const sidebarToggle = document.querySelector(".sidebar-toggle");
+
 
 let applyTransactionsFilters;
 let applyCategoriesFilters;
@@ -200,6 +201,12 @@ const navigateTo = (page) => {
       });
     }
   }
+  sidebar.classList.remove('active');
+  if (sidebar.classList.contains("active")) {
+    sidebarToggle.innerHTML = `<i class="fa-solid fa-close"></i>`;
+  } else {
+    sidebarToggle.innerHTML = `<i class="fa-solid fa-bars"></i>`;
+  }
 };
 
 navItems.forEach((item) => {
@@ -211,7 +218,6 @@ navItems.forEach((item) => {
 });
 navigateTo("dashboard");
 
-const sidebarToggle = document.querySelector(".sidebar-toggle");
 sidebarToggle.addEventListener("click", () => {
   sidebar.classList.toggle("active");
   if (sidebar.classList.contains("active")) {
@@ -334,7 +340,6 @@ const addCategoryModaConf = {
 };
 function handleAddCatButton() {
   const addCatBtn = document.querySelector(".add-category-btn");
-  console.log(addCatBtn);
   addCatBtn.addEventListener("click", (e) => {
     modalRoot.classList.remove("remove");
     modalRoot.innerHTML = Modal(
@@ -352,7 +357,6 @@ function handleAddCatButton() {
 function handleBudgetActionsDropDown() {
   const budgetActionsBtn = document.querySelectorAll(".budget-actions-btn");
   const budgetDropdowns = document.querySelectorAll(".budget-actions-dropdown");
-  console.log(budgetDropdowns);
 
   budgetActionsBtn.forEach((budgetActionBtn) => {
     budgetActionBtn.addEventListener("click", (e) => {
@@ -562,9 +566,6 @@ function handleAddTransactionModal() {
   const addTransactionBtn = document.querySelector(".add-transaction-btn");
   addTransactionBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    console.log("Add Transaction button clicked");
-    console.log("Add transaction e.target:", e.target);
-    console.log("Add transaction e.currentTarget:", e.currentTarget);
     const addTransactionModal = {
       content: `
     <div class="modal-inner">
@@ -580,7 +581,6 @@ function handleAddTransactionModal() {
               getCategories().length === 0
                 ? `<option value="no-category">No Category</option>`
                 : getCategories().map((category) => {
-                    console.log(category.name);
                     return `<option value="${category.name.toLowerCase()}" data-type="${
                       category.type
                     }">${category.name}</option>`;
@@ -633,7 +633,6 @@ function handleTransactionActions(isFiltered) {
     btn.addEventListener("click", (e) => {
       const id = e.target.closest("button").dataset.id;
       const transaction = getTransaction(id)[0];
-      console.log("Transaction:", transaction);
 
       const editTransactionModalConf = {
         content: `
@@ -649,7 +648,6 @@ function handleTransactionActions(isFiltered) {
                 <div class="select-wrapper">
                   <select id="transaction-category">
                     ${getCategories().map((category) => {
-                      console.log(category.name);
                       return `<option value="${category.name.toLowerCase()}" data-type="${
                         category.type
                       }" ${
@@ -746,9 +744,7 @@ function handleCategoriesActions(isFiltered) {
   categoriesEditBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const id = e.target.closest(".category-edit-btn").dataset.id;
-      console.log("Id:", id);
       const category = getCategory(id)[0];
-      console.log("Category:", category);
       const editCategoryModal = {
         content: `
         <div class="modal-inner add-category-modal">
@@ -953,14 +949,12 @@ function handleCategoriesFilter() {
           .includes(searchCategory.value.trim().toLowerCase())
       );
     }
-    console.log("Length:", getCategories().length);
     if (categories.length === 0 && getCategories().length !== 0) {
       categoryTableBody.innerHTML =
         "<p class='no-trans-found'>No Categories!</p>";
     } else {
       categoryTableBody.innerHTML = renderCategoriesRow(categories);
     }
-    console.log("CATEGOIES:", categories);
     handleCategoriesActions(true);
   };
   searchCategory.addEventListener("input", applyCategoriesFilters);
