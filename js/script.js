@@ -537,7 +537,7 @@ function handleAddBugetButton() {
                             category.name
                           }</option>`;
                         }
-                      })
+                      }).join("")
                 }
             </select>
             <i class="fa-solid fa-chevron-down"></i>
@@ -594,7 +594,7 @@ function handleAddTransactionModal() {
                     return `<option value="${category.name.toLowerCase()}" data-type="${
                       category.type
                     }">${category.name}</option>`;
-                  })
+                  }).join("")
             }
           </select>
           <i class="fa-solid fa-chevron-down"></i>
