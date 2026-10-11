@@ -537,7 +537,7 @@ function handleAddBugetButton() {
                             category.name
                           }</option>`;
                         }
-                      }).join("")
+                      }).join(",")
                 }
             </select>
             <i class="fa-solid fa-chevron-down"></i>
@@ -849,13 +849,14 @@ function handleTransactionsFilter() {
   const transactionsTableBody = document.querySelector(
     ".transactions-table tbody"
   );
-
-  const searchTransValue = searchTrans?.value;
-  const categoryFilterValue = categoryFilter?.value;
-  const typeFilterValue = typeFilter?.value;
-  const orderFilterValue = orderFilter?.value;
-
+  
   applyTransactionsFilters = () => {
+  
+    const searchTransValue = searchTrans?.value;
+    const categoryFilterValue = categoryFilter?.value;
+    const typeFilterValue = typeFilter?.value;
+    const orderFilterValue = orderFilter?.value;
+
     let transactions = getTransactions();
     if (categoryFilterValue === "all" && typeFilter?.value === "all") {
       transactions = getTransactions();
